@@ -4,11 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +12,9 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
@@ -312,7 +311,7 @@ public class DynamicSettersActivity extends AppCompatActivity implements OnDateL
 
   @OnClick(R.id.button_weeks)
   public void onSetWeekMode() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && animateModeTransition.isChecked()) {
+    if (animateModeTransition.isChecked()) {
       TransitionManager.beginDelayedTransition(parent);
     }
     widget.state().edit().setCalendarDisplayMode(CalendarMode.WEEKS).commit();
@@ -320,7 +319,7 @@ public class DynamicSettersActivity extends AppCompatActivity implements OnDateL
 
   @OnClick(R.id.button_months)
   public void onSetMonthMode() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && animateModeTransition.isChecked()) {
+    if (animateModeTransition.isChecked()) {
       TransitionManager.beginDelayedTransition(parent);
     }
     widget.state().edit().setCalendarDisplayMode(CalendarMode.MONTHS).commit();

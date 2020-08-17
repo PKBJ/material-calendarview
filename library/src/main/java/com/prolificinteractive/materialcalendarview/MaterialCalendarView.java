@@ -9,12 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -27,6 +21,12 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.ViewPager;
 import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter;
 import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter;
@@ -249,15 +249,9 @@ public class MaterialCalendarView extends ViewGroup {
   public MaterialCalendarView(Context context, AttributeSet attrs) {
     super(context, attrs);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      //If we're on good Android versions, turn off clipping for cool effects
-      setClipToPadding(false);
-      setClipChildren(false);
-    } else {
-      //Old Android does not like _not_ clipping view pagers, we need to clip
-      setClipChildren(true);
-      setClipToPadding(true);
-    }
+    // Turn off clipping for cool effects
+    setClipToPadding(false);
+    setClipChildren(false);
 
     final LayoutInflater inflater =
         (LayoutInflater) getContext().getSystemService(Service.LAYOUT_INFLATER_SERVICE);
@@ -274,10 +268,10 @@ public class MaterialCalendarView extends ViewGroup {
 
     titleChanger = new TitleChanger(title);
 
-    pager.setOnPageChangeListener(pageChangeListener);
+    pager.addOnPageChangeListener(pageChangeListener);
     pager.setPageTransformer(false, new ViewPager.PageTransformer() {
       @Override
-      public void transformPage(View page, float position) {
+      public void transformPage(@NonNull View page, float position) {
         position = (float) Math.sqrt(1 - Math.abs(position));
         page.setAlpha(position);
       }

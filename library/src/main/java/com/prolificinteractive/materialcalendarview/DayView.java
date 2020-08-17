@@ -13,12 +13,12 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.AppCompatCheckedTextView;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.view.Gravity;
 import android.view.View;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatCheckedTextView;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView.ShowOtherDates;
 import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 import java.util.List;
@@ -57,9 +57,7 @@ import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.
 
     setGravity(Gravity.CENTER);
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-      setTextAlignment(TEXT_ALIGNMENT_CENTER);
-    }
+    setTextAlignment(TEXT_ALIGNMENT_CENTER);
 
     setDay(day);
   }
@@ -125,7 +123,10 @@ import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.
     if (drawable == null) {
       this.selectionDrawable = null;
     } else {
-      this.selectionDrawable = drawable.getConstantState().newDrawable(getResources());
+      Drawable.ConstantState constantState = drawable.getConstantState();
+      if (constantState != null) {
+        this.selectionDrawable = constantState.newDrawable(getResources());
+      }
     }
     regenerateBackground();
   }
@@ -137,7 +138,10 @@ import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.
     if (drawable == null) {
       this.customBackground = null;
     } else {
-      this.customBackground = drawable.getConstantState().newDrawable(getResources());
+      Drawable.ConstantState constantState = drawable.getConstantState();
+      if (constantState != null) {
+        this.customBackground = constantState.newDrawable(getResources());
+      }
     }
     invalidate();
   }
@@ -203,10 +207,10 @@ import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.
 
   private void regenerateBackground() {
     if (selectionDrawable != null) {
-      setBackgroundDrawable(selectionDrawable);
+      setBackground(selectionDrawable);
     } else {
       mCircleDrawable = generateBackground(selectionColor, fadeTime, circleDrawableRect);
-      setBackgroundDrawable(mCircleDrawable);
+      setBackground(mCircleDrawable);
     }
   }
 

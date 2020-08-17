@@ -2,12 +2,13 @@ package com.prolificinteractive.materialcalendarview.sample;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -46,8 +47,9 @@ public class MultipleViewActivity extends AppCompatActivity {
       inflater = LayoutInflater.from(context);
     }
 
+    @NonNull
     @Override
-    public EntryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public EntryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
       final View view = inflater.inflate(R.layout.calendar_list_entry, parent, false);
       return new EntryViewHolder(view);
     }

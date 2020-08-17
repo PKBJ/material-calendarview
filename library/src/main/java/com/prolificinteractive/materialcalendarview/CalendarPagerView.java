@@ -1,12 +1,11 @@
 package com.prolificinteractive.materialcalendarview;
 
-import android.os.Build;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
+import androidx.annotation.NonNull;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView.ShowOtherDates;
 import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
@@ -65,9 +64,7 @@ abstract class CalendarPagerView extends ViewGroup
     LocalDate local = calendar;
     for (int i = 0; i < DEFAULT_DAYS_IN_WEEK; i++) {
       WeekDayView weekDayView = new WeekDayView(getContext(), local.getDayOfWeek());
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-        weekDayView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-      }
+      weekDayView.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
       weekDayViews.add(weekDayView);
       addView(weekDayView);
       local = local.plusDays(1);
