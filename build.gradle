@@ -4,13 +4,13 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:4.0.1'
+    classpath 'com.android.tools.build:gradle:4.1.0'
     classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
   }
 }
 
 plugins {
-  id 'com.github.ben-manes.versions' version '0.29.0'
+  id 'com.github.ben-manes.versions' version '0.33.0'
 }
 
 allprojects {

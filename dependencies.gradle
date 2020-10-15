@@ -9,9 +9,9 @@ ext {
   viewpager = 'androidx.viewpager:viewpager:1.0.0'
 
   // Test
-  junit = 'junit:junit:4.13'
-  testRunner = 'androidx.test:runner:1.2.0'
-  testRules = 'androidx.test:rules:1.2.0'
+  junit = 'junit:junit:4.13.1'
+  testRunner = 'androidx.test:runner:1.3.0'
+  testRules = 'androidx.test:rules:1.3.0'
 
   // Hamcrest
   hamcrestCore = 'org.hamcrest:hamcrest-core:2.2'
